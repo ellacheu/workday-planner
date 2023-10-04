@@ -2,7 +2,7 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 var currentDay = $('#currentDay');
-var saveButtonEl = $('.saveBtn');
+var saveButton = $('.saveBtn');
 
 // time slot container variables
 var hour9 = $('#hour-9');
@@ -15,29 +15,43 @@ var hour3 = $('#hour-15');
 var hour4 = $('#hour-16');
 var hour5 = $('#hour-17');
 
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?  
-
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-
+// Saves entries into local storage for each time slot container
 $(function() {
-  var descriptionEl = $('.description');
-  var saveButton = $('.saveBtn');
+  var saveButton9 = $('#saveBtn9');
+  saveButton9.on("click", function() {
+    var timeslot9 = $(hour9)
+    var inputValue = timeslot9.find("textarea").val();
+    localStorage.setItem("inputValue", inputValue);
 
-  saveButton.on("click", function(event) {
-    event.preventDefault();
-    var savedEvent = createInput.value;
-    var inputValue = $('savedEvent').val();
+  var saveButton10 = $('#saveBtn10');
+  saveButton10.on("click", function() {
+    var timeslot10 = $(hour10);
+    var inputValue10 = timeslot10.find("textarea").val();
+    localStorage.setItem("inputValue10", inputValue10);
 
-    localStorage.setItem("inputValue", savedEvent);
+  var saveButton11 = $('#saveBtn11');
+  saveButton11.on("click", function() {
+    var timeslot11 = $(hour11);
+    var inputValue11 = timeslot11.find("textarea").val();
+    localStorage.setItem("inputValue11", inputValue11);
   })
 
+    })
+  
+  });
+
+//  var timeslotContainers = ['hour9', 'hour10', 'hour11', 'hour12', 'hour13', 'hour14', 'hour15', 'hour16', 'hour17'];
+//  var localStorageData = getLocalStorageData(timeslotContainers);
+//  console.log(localStorageData);
+
+// $(function getLocalStorageData(timeslotContainers) {
+//   var data = {};
+
+//   timeslotContainers.foreach(timeslotContainers => {
+//     var containerData = localStorate.getItem(timeslotContainers);
+//     data[timeslotContainers] = JSON.parse(containerData);
+//   })
+// });
 
 // function to compare time slot hour to current hour
 // then adds past, present, future class element 
