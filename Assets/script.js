@@ -44,13 +44,21 @@ $(function() {
   displayTime();
   setInterval(displayTime, 1000);
   })
-
-  var saveButton9 = $('#saveBtn9');
-  saveButton9.on("click", function() {
+  
+  $(function() {
+    var savedInputValue = JSON.parse(localStorage.getItem('inputValue'));
+    if (savedInputValue !== null) {
+      textarea.val(savedInputValue);
+    } 
+    var saveButton9 = $('#saveBtn9');
+    saveButton9.on("click", function() {
     var timeslot9 = $(hour9);
     var inputValue = timeslot9.find("textarea").val();
-    localStorage.setItem("inputValue", inputValue);
-  })
+    localStorage.setItem("inputValue", JSON.stringify(inputValue));
+
+  });
+});
+
   var saveButton10 = $('#saveBtn10');
   saveButton10.on("click", function() {
     var timeslot10 = $(hour10);
@@ -99,7 +107,6 @@ $(function() {
     var inputValue17 = timeslot17.find("textarea").val();
     localStorage.setItem("inputValue17", inputValue17);
   })
-
 
 
 
