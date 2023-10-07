@@ -48,58 +48,75 @@ $(function() {
   var saveButton9 = $('#saveBtn9');
   saveButton9.on("click", function() {
     var timeslot9 = $(hour9);
-    var inputValue = timeslot9.find("textarea").val();
-    localStorage.setItem("inputValue", inputValue);
+    var input9 = timeslot9.find("textarea").val();
+    localStorage.setItem("input9", JSON.stringify(input9));
   })
   var saveButton10 = $('#saveBtn10');
   saveButton10.on("click", function() {
     var timeslot10 = $(hour10);
-    var inputValue10 = timeslot10.find("textarea").val();
-    localStorage.setItem("inputValue10", inputValue10);
+    var input10 = timeslot10.find("textarea").val();
+    localStorage.setItem("input10", JSON.stringify(input10));
   })
   var saveButton11 = $('#saveBtn11');
   saveButton11.on("click", function() {
     var timeslot11 = $(hour11);
-    var inputValue11 = timeslot11.find("textarea").val();
-    localStorage.setItem("inputValue11", inputValue11);
+    var input11 = timeslot11.find("textarea").val();
+    localStorage.setItem("input11", JSON.stringify(input11));
   })
   var saveButton12 = $('#saveBtn12');
   saveButton11.on("click", function() {
     var timeslot12 = $(hour12);
-    var inputValue11 = timeslot12.find("textarea").val();
-    localStorage.setItem("inputValue12", inputValue12);
+    var input12 = timeslot12.find("textarea").val();
+    localStorage.setItem("input12", JSON.stringify(input12));
   })
   var saveButton13 = $('#saveBtn13');
   saveButton13.on("click", function() {
     var timeslot13 = $(hour13);
-    var inputValue13 = timeslot13.find("textarea").val();
-    localStorage.setItem("inputValue13", inputValue13);
+    var input13 = timeslot13.find("textarea").val();
+    localStorage.setItem("input13", JSON.stringify(input13));
   })
   var saveButton14 = $('#saveBtn14');
   saveButton14.on("click", function() {
     var timeslot14 = $(hour14);
-    var inputValue14 = timeslot14.find("textarea").val();
-    localStorage.setItem("inputValue14", inputValue14);
+    var input14 = timeslot14.find("textarea").val();
+    localStorage.setItem("input14", JSON.stringify(input14));
   })
   var saveButton15 = $('#saveBtn15');
   saveButton15.on("click", function() {
     var timeslot15 = $(hour15);
-    var inputValue15 = timeslot15.find("textarea").val();
-    localStorage.setItem("inputValue15", inputValue15);
+    var input15 = timeslot15.find("textarea").val();
+    localStorage.setItem("input15", JSON.stringify(input15));
   })
   var saveButton16 = $('#saveBtn16');
   saveButton16.on("click", function() {
     var timeslot16 = $(hour16);
-    var inputValue16 = timeslot16.find("textarea").val();
-    localStorage.setItem("inputValue16", inputValue16);
+    var input16 = timeslot16.find("textarea").val();
+    localStorage.setItem("input16", JSON.stringify(input16));
   })
   var saveButton17 = $('#saveBtn17');
   saveButton17.on("click", function() {
     var timeslot17 = $(hour17);
-    var inputValue17 = timeslot17.find("textarea").val();
-    localStorage.setItem("inputValue17", inputValue17);
+    var input17 = timeslot17.find("textarea").val();
+    localStorage.setItem("input17", JSON.stringify(input17));
   })
 
+
+var itemKeys = ['input9', 'input10', 'input11', 'input12','input13','input14', 'input15', 'input16','input17'];
+
+// Object to store the retrieved items
+var retrievedItems = {};
+
+// Loop through the item keys
+itemKeys.forEach((key) => {
+  // Retrieve the item value from local storage
+  var itemValue = localStorage.getItem(key);
+
+  // Add the item to the retrievedItems object
+  retrievedItems[key] = itemValue;
+})
+
+// // Use the retrieved items as needed
+console.log(retrievedItems);
 
 
 
