@@ -44,9 +44,14 @@ $(function() {
   displayTime();
   setInterval(displayTime, 1000);
   })
-
-  var saveButton9 = $('#saveBtn9');
-  saveButton9.on("click", function() {
+  
+  $(function() {
+    var savedInputValue = JSON.parse(localStorage.getItem('inputValue'));
+    if (savedInputValue !== null) {
+      textarea.val(savedInputValue);
+    } 
+    var saveButton9 = $('#saveBtn9');
+    saveButton9.on("click", function() {
     var timeslot9 = $(hour9);
     var input9 = timeslot9.find("textarea").val();
     localStorage.setItem("input9", JSON.stringify(input9));
@@ -99,7 +104,7 @@ $(function() {
     var input17 = timeslot17.find("textarea").val();
     localStorage.setItem("input17", JSON.stringify(input17));
   })
-
+  })
 
 var itemKeys = ['input9', 'input10', 'input11', 'input12','input13','input14', 'input15', 'input16','input17'];
 
@@ -117,8 +122,7 @@ itemKeys.forEach((key) => {
 
 // // Use the retrieved items as needed
 console.log(retrievedItems);
-
-
+  
 
 
 
