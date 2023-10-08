@@ -1,6 +1,3 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 var currentDay = $('#currentDay');
 
 // time slot container variables
@@ -19,7 +16,7 @@ $(function() {
   // function to compare time slot hour to current hour
 // then adds past, present, future class element 
   var currentHour = dayjs().hour();
-  $('.time-slot').each(function(){
+  $('.timeslot').each(function(){
     var slotHour = parseInt($(this).attr('id').split('-')[1]);
   
     if (slotHour < currentHour) {
@@ -45,11 +42,8 @@ $(function() {
   setInterval(displayTime, 1000);
   })
   
-  $(function() {
-    var savedInputValue = JSON.parse(localStorage.getItem('inputValue'));
-    if (savedInputValue !== null) {
-      textarea.val(savedInputValue);
-    } 
+  // save input value into local storage for each time slot
+  $(function() { 
     var saveButton9 = $('#saveBtn9');
     saveButton9.on("click", function() {
     var timeslot9 = $(hour9);
@@ -69,7 +63,7 @@ $(function() {
     localStorage.setItem("input11", JSON.stringify(input11));
   })
   var saveButton12 = $('#saveBtn12');
-  saveButton11.on("click", function() {
+  saveButton12.on("click", function() {
     var timeslot12 = $(hour12);
     var input12 = timeslot12.find("textarea").val();
     localStorage.setItem("input12", JSON.stringify(input12));
@@ -105,24 +99,30 @@ $(function() {
     localStorage.setItem("input17", JSON.stringify(input17));
   })
   })
-
-var itemKeys = ['input9', 'input10', 'input11', 'input12','input13','input14', 'input15', 'input16','input17'];
-
-// Object to store the retrieved items
-var retrievedItems = {};
-
-// Loop through the item keys
-itemKeys.forEach((key) => {
-  // Retrieve the item value from local storage
-  var itemValue = localStorage.getItem(key);
-
-  // Add the item to the retrievedItems object
-  retrievedItems[key] = itemValue;
-})
-
-// // Use the retrieved items as needed
-console.log(retrievedItems);
   
+  $('.timeslot').each(function() {
+    var itemKeys = ['input9', 'input10', 'input11', 'input12','input13','input14', 'input15', 'input16','input17'];
+    var retrievedItems = {};
+    itemKeys.forEach((key) => {
+  
+      var itemValue = localStorage.getItem(key);
+      var parsedInput = JSON.parse(itemValue);
+    
+      retrievedItems[key] = parsedInput;
+
+    var timeslot = $(this);
+    var timeslotKey = parsedInput + timeslot.data("timeslot")
+    if (parsedInput !== null) {
+    timeslot.find('textarea').val(parsedInput);
+  }
+
+  window.onload = function() {
+    if (parsedInput) {
+      textarea.textContent = parsedInput;
+    }
+  }
+})
+  })
 
 
 
