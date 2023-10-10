@@ -16,6 +16,7 @@ $(function() {
   // then adds past, present, future class element 
   var currentHour = dayjs().hour();
   $('.timeslot').each(function(){
+  $('.timeslot').each(function(){
     var slotHour = parseInt($(this).attr('id').split('-')[1]);
   
     if (slotHour < currentHour) {
