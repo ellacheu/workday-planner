@@ -5,9 +5,9 @@ This workday planner was created for the user to be able to save events into the
 
 ## Usage
 Visual of the webpage:
-![webpageimage](assets/images/workday-planner-image.png)
+![webpageimage](Assets/images/workday-planner-image.png)
 
-##Credits
+## Credits
 Referenced Resources: <br>
 https://developer.mozilla.org/en-US/ <br>
 https://www.w3schools.com/ <br>
