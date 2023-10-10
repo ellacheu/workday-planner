@@ -67,5 +67,6 @@ $(function() {
       textarea.textContent = parsedInput;
     }
   }
+})
 });
 });
