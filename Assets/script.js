@@ -1,6 +1,3 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 var currentDay = $('#currentDay');
 
 // time slot container variables
@@ -14,12 +11,11 @@ var hour15 = $('#hour-15');
 var hour16 = $('#hour-16');
 var hour17 = $('#hour-17');
 
-// Saves entries into local storage for each time slot container
 $(function() {
   // function to compare time slot hour to current hour
-// then adds past, present, future class element 
+  // then adds past, present, future class element 
   var currentHour = dayjs().hour();
-  $('.time-slot').each(function(){
+  $('.timeslot').each(function(){
     var slotHour = parseInt($(this).attr('id').split('-')[1]);
   
     if (slotHour < currentHour) {
@@ -45,78 +41,30 @@ $(function() {
   setInterval(displayTime, 1000);
   })
   
-  $(function() {
-    var savedInputValue = JSON.parse(localStorage.getItem('inputValue'));
-    if (savedInputValue !== null) {
-      textarea.val(savedInputValue);
-    } 
-    var saveButton9 = $('#saveBtn9');
-    saveButton9.on("click", function() {
-    var timeslot9 = $(hour9);
-    var inputValue = timeslot9.find("textarea").val();
-    localStorage.setItem("inputValue", JSON.stringify(inputValue));
+  $(document).ready(function() {
+// get saved inputs from local storage and display in corresponding timeslot
+  $('.timeslot').each(function() {
 
+    var timeslot = $(this);
+    var timeslotKey = "inputValue" + timeslot.data("timeslot")
+    var textarea = timeslot.find("textarea");
+    var parsedInput = JSON.parse(localStorage.getItem(timeslotKey));
+
+    console.log(timeslotKey);
+
+    if (parsedInput !== null) {
+    timeslot.find('textarea').val(parsedInput);
+  }
+// save inputs into local storage with unique input keys for each time slot button
+  timeslot.find(".saveBtn").on("click", function() {
+    var inputValue = timeslot.find("textarea").val();
+    localStorage.setItem(timeslotKey, JSON.stringify(inputValue));
   });
+// show saved inputs upon refresh
+  window.onload = function() {
+    if (parsedInput) {
+      textarea.textContent = parsedInput;
+    }
+  }
 });
-
-  var saveButton10 = $('#saveBtn10');
-  saveButton10.on("click", function() {
-    var timeslot10 = $(hour10);
-    var inputValue10 = timeslot10.find("textarea").val();
-    localStorage.setItem("inputValue10", inputValue10);
-  })
-  var saveButton11 = $('#saveBtn11');
-  saveButton11.on("click", function() {
-    var timeslot11 = $(hour11);
-    var inputValue11 = timeslot11.find("textarea").val();
-    localStorage.setItem("inputValue11", inputValue11);
-  })
-  var saveButton12 = $('#saveBtn12');
-  saveButton11.on("click", function() {
-    var timeslot12 = $(hour12);
-    var inputValue11 = timeslot12.find("textarea").val();
-    localStorage.setItem("inputValue12", inputValue12);
-  })
-  var saveButton13 = $('#saveBtn13');
-  saveButton13.on("click", function() {
-    var timeslot13 = $(hour13);
-    var inputValue13 = timeslot13.find("textarea").val();
-    localStorage.setItem("inputValue13", inputValue13);
-  })
-  var saveButton14 = $('#saveBtn14');
-  saveButton14.on("click", function() {
-    var timeslot14 = $(hour14);
-    var inputValue14 = timeslot14.find("textarea").val();
-    localStorage.setItem("inputValue14", inputValue14);
-  })
-  var saveButton15 = $('#saveBtn15');
-  saveButton15.on("click", function() {
-    var timeslot15 = $(hour15);
-    var inputValue15 = timeslot15.find("textarea").val();
-    localStorage.setItem("inputValue15", inputValue15);
-  })
-  var saveButton16 = $('#saveBtn16');
-  saveButton16.on("click", function() {
-    var timeslot16 = $(hour16);
-    var inputValue16 = timeslot16.find("textarea").val();
-    localStorage.setItem("inputValue16", inputValue16);
-  })
-  var saveButton17 = $('#saveBtn17');
-  saveButton17.on("click", function() {
-    var timeslot17 = $(hour17);
-    var inputValue17 = timeslot17.find("textarea").val();
-    localStorage.setItem("inputValue17", inputValue17);
-  })
-
-
-
-
-
-
-// display the current time at the top of the calender
-// time blocks for standard 9-5 hours
-// color-coded indicating past, present or future
-// enter an event on time block
-// clicking save saves the event to local storage
-// upon refresh, the saved event persists.  
-
+});
